@@ -1,0 +1,51 @@
+#+Title: Connect Four Notes
+#+AUTHOR: Andrew Buckingham
+#+STARTUP: indent
+#+OPTIONS: num:nil toc:nil ^:nil
+#+TODO: TODO(t) |  Started(s) | Waiting(w) | Someday/Maybe(m) | Canceled(c) | DONE(d)(@) | Meeting(M) | Note(n)
+#+FILETAGS: :springboard:
+
+* Step One
+
+** what HTML would be useful for the game board itself?
+ HTML and CSS would be useful to present the following elements:
+ - a table or grid to represent the board
+ - images to represent the playing pieces
+ - a 'hover' to show which column the mouse has chosen
+   
+** how could you represent a played-piece in the HTML board?
+An image representing the piece
+
+** in the JavaScript, what would be a good structure for the in-memory game board?
+
+*** Options
+1. Objects: You could have each square be the key, and the value could be null, User1, or User2.
+2. Arrays: Using an array, or nested arrays, you could index each square and each element could represent null, user1, or user2.
+
+In this case, I believe using an array or nested array would be preferred, because it's a relatively small dataset, and it will be important to loop over the values. Also, an index will be convenient, because the order of squares and pieces will be important to track.
+
+** what might the flow of the game be?
+1. User 1 chooses a square for his/her piece. He/she clicks on the top square in the column, and the piece "drops" to the chosen square.
+2. User 2 chooses a square and repeats the same action.
+3. Each user continues. The goal is to get a row of four connected pieces, either horizontally, vertically, or diagonally.
+4. When one user gets four connected pieces, that player wins, and the game ends. If the game board is full, and neither player can win, the game ends with no winner.
+
+** Then, write down some functions names/descriptions that would be useful for this game.
+*** const board
+ [[vals], [vals]...] (each nested array could represent a column of squares)
+
+*** const createBoard
+    Invoked once at the start of each game. Creates the board.
+
+*** const handleClick
+    Invoked each time a player clicks on the board. Calls the following functions:
+
+    - *const fillSquare*: After the square is chosen, it is assigned to the user who chose it.
+    - *const checkForWinner*: Loops through the board and checks for a winner
+    - *const declareWinner*: Declares the winner, if applicable
+
+*** const endGame
+  Invoked after *checkForWinner* determines that neither player can win. Ends the game
+
+*** const playAgain?
+  User can end the game, or play again
