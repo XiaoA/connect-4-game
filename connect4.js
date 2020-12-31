@@ -54,11 +54,13 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
-  return 0;
+  for (let y = HEIGHT - 1; y >= 0; y--) {
+    if (!board[y][x]) {
+      return y;
+    }
+  }
+  return null;
 }
-
-/** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
   const piece = document.createElement('div');
@@ -117,7 +119,7 @@ function checkForWin() {
 
     return cells.every(
       ([y, x]) =>
-        y >= 0 &&
+      y >= 0 &&
         y < HEIGHT &&
         x >= 0 &&
         x < WIDTH &&
