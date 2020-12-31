@@ -76,7 +76,7 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  window.alert(msg);
+  alert(msg);
 }
 
 /** handleClick: handle click of column top to play piece */
