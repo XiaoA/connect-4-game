@@ -49,3 +49,8 @@ In this case, I believe using an array or nested array would be preferred, becau
 
 *** const playAgain?
   User can end the game, or play again
+
+* Step Two
+  This code would benefit from updating to ES2015 style — there are lots of place where var is used that could be changed to either let or const to improve readability. Are there other style fixes you can make?
+
+
