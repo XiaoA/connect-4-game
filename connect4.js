@@ -24,19 +24,20 @@ function makeBoard() {
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
+  // const board = document.querySelector("#board");
   const board = document.querySelector("#board");
 
   // create squares at top of each column for users to click on to place pieces in that column
-  let top = document.createElement("tr");
+  const top = document.createElement("tr");
   top.setAttribute("id", "column-top");
   top.addEventListener("click", handleClick);
 
-  for (var x = 0; x < WIDTH; x++) {
-    let headCell = document.createElement("td");
+  for (let x = 0; x < WIDTH; x++) {
+    const headCell = document.createElement("td");
     headCell.setAttribute("id", x);
     top.append(headCell);
   }
-  htmlBoard.append(top);
+  board.append(top);
 
   // create board
   for (let y = 0; y < HEIGHT; y++) {
@@ -46,7 +47,7 @@ function makeHtmlBoard() {
       cell.setAttribute("id", `${y}-${x}`);
       row.append(cell);
     }
-    htmlBoard.append(row);
+    board.append(row);
   }
 }
 
@@ -60,7 +61,14 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
+  const piece = document.createElement('div');
+  piece.classList.add('piece');
+  piece.classList.add(`p${currPlayer}`);
+  piece.style.top = -50 * (y + 2);
+
+  // const spot = document.querySelector("#`${y}-${x}`");
+  const spot = document.getElementById(`${y}-${x}`);
+  spot.append(piece);
 }
 
 /** endGame: announce game end */
